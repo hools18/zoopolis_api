@@ -1,0 +1,282 @@
+[2024-12-07 04:04:48] local.ERROR: Auth driver [api] for guard [api] is not defined. {"exception":"[object] (InvalidArgumentException(code: 0): Auth driver [api] for guard [api] is not defined. at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/auth/AuthManager.php:99)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/auth/AuthManager.php(70): Illuminate\\Auth\\AuthManager->resolve()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/auth/AuthManager.php(340): Illuminate\\Auth\\AuthManager->guard()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/support/Facades/Facade.php(338): Illuminate\\Auth\\AuthManager->__call()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Controllers/UserController.php(768): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/container/BoundMethod.php(36): App\\Http\\Controllers\\UserController->blockedUser()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#7 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#8 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/container/Container.php(661): Illuminate\\Container\\BoundMethod::call()
+#9 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(391): Illuminate\\Container\\Container->call()
+#10 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(356): Laravel\\Lumen\\Application->callControllerCallable()
+#11 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(331): Laravel\\Lumen\\Application->callLumenController()
+#12 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(284): Laravel\\Lumen\\Application->callControllerAction()
+#13 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(264): Laravel\\Lumen\\Application->callActionOnArrayBasedRoute()
+#14 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#15 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php(29): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#16 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#17 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#18 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#19 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#20 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(263): Laravel\\Lumen\\Application->sendThroughPipeline()
+#21 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(239): Laravel\\Lumen\\Application->handleFoundRoute()
+#22 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(174): Laravel\\Lumen\\Application->handleDispatcherResponse()
+#23 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#24 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php(29): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#25 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#26 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#27 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#28 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#29 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#30 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#31 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#32 {main}
+"} 
+[2024-12-07 13:38:51] local.ERROR: Call to undefined method Symfony\Component\HttpFoundation\BinaryFileResponse::header() {"exception":"[object] (Error(code: 0): Call to undefined method Symfony\\Component\\HttpFoundation\\BinaryFileResponse::header() at /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php:32)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(263): Laravel\\Lumen\\Application->sendThroughPipeline()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(171): Laravel\\Lumen\\Application->handleFoundRoute()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#7 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php(29): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#8 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#9 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#10 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#11 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#12 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#13 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#14 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#15 {main}
+"} 
+[2024-12-07 13:39:37] local.ERROR: Call to undefined method Symfony\Component\HttpFoundation\BinaryFileResponse::header() {"exception":"[object] (Error(code: 0): Call to undefined method Symfony\\Component\\HttpFoundation\\BinaryFileResponse::header() at /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php:32)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(263): Laravel\\Lumen\\Application->sendThroughPipeline()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(171): Laravel\\Lumen\\Application->handleFoundRoute()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#7 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php(29): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#8 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#9 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#10 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#11 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#12 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#13 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#14 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#15 {main}
+"} 
+[2024-12-07 13:39:47] local.ERROR: Call to undefined method Symfony\Component\HttpFoundation\BinaryFileResponse::header() {"exception":"[object] (Error(code: 0): Call to undefined method Symfony\\Component\\HttpFoundation\\BinaryFileResponse::header() at /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php:32)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(263): Laravel\\Lumen\\Application->sendThroughPipeline()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(171): Laravel\\Lumen\\Application->handleFoundRoute()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#7 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php(29): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#8 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#9 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#10 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#11 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#12 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#13 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#14 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#15 {main}
+"} 
+[2024-12-07 13:40:30] local.ERROR: Call to undefined method Symfony\Component\HttpFoundation\BinaryFileResponse::header() {"exception":"[object] (Error(code: 0): Call to undefined method Symfony\\Component\\HttpFoundation\\BinaryFileResponse::header() at /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php:32)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(263): Laravel\\Lumen\\Application->sendThroughPipeline()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(171): Laravel\\Lumen\\Application->handleFoundRoute()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#7 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php(29): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#8 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#9 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#10 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#11 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#12 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#13 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#14 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#15 {main}
+"} 
+[2024-12-07 13:41:52] local.ERROR: Auth driver [api] for guard [api] is not defined. {"exception":"[object] (InvalidArgumentException(code: 0): Auth driver [api] for guard [api] is not defined. at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/auth/AuthManager.php:99)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/auth/AuthManager.php(70): Illuminate\\Auth\\AuthManager->resolve()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/Authenticate.php(36): Illuminate\\Auth\\AuthManager->guard()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\Authenticate->handle()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(263): Laravel\\Lumen\\Application->sendThroughPipeline()
+#7 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(171): Laravel\\Lumen\\Application->handleFoundRoute()
+#8 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#9 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php(29): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#10 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#11 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#12 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#13 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#14 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#15 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#16 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#17 {main}
+"} 
+[2024-12-07 13:42:20] local.ERROR: Call to undefined method Symfony\Component\HttpFoundation\BinaryFileResponse::header() {"exception":"[object] (Error(code: 0): Call to undefined method Symfony\\Component\\HttpFoundation\\BinaryFileResponse::header() at /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php:32)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#7 {main}
+"} 
+[2024-12-07 13:42:31] local.ERROR: Call to undefined method Symfony\Component\HttpFoundation\BinaryFileResponse::header() {"exception":"[object] (Error(code: 0): Call to undefined method Symfony\\Component\\HttpFoundation\\BinaryFileResponse::header() at /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php:32)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#7 {main}
+"} 
+[2024-12-07 13:43:19] local.ERROR: Call to undefined method Symfony\Component\HttpFoundation\BinaryFileResponse::header() {"exception":"[object] (Error(code: 0): Call to undefined method Symfony\\Component\\HttpFoundation\\BinaryFileResponse::header() at /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php:32)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(263): Laravel\\Lumen\\Application->sendThroughPipeline()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(171): Laravel\\Lumen\\Application->handleFoundRoute()
+#6 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#7 /home/admin/webserver/web/api.sergivanov.ru/public_html/app/Http/Middleware/CorsMiddleware.php(29): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#8 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#9 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#10 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#11 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#12 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(167): Laravel\\Lumen\\Application->sendThroughPipeline()
+#13 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#14 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#15 {main}
+"} 
+[2024-12-07 13:44:43] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/timesheets.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/timesheets.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:46:41] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:48:29] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:49:18] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:54:41] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:54:47] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:55:39] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:56:08] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:56:13] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:57:07] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 13:57:40] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
+[2024-12-07 14:08:37] local.ERROR: SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx {"exception":"[object] (RuntimeException(code: 0): SplFileInfo::getSize(): stat failed for /home/admin/webserver/web/api.sergivanov.ru/public_html/storage/users.xlsx at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php:199)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/http-foundation/BinaryFileResponse.php(199): SplFileInfo->getSize()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(453): Symfony\\Component\\HttpFoundation\\BinaryFileResponse->prepare()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(139): Laravel\\Lumen\\Application->prepareResponse()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(121): Laravel\\Lumen\\Application->callTerminableMiddleware()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/public/index.php(28): Laravel\\Lumen\\Application->run()
+#5 {main}
+"} 
