@@ -1,0 +1,120 @@
+Array
+(
+    [uid] => a318b0e8-9c55-49e8-9722-6afdf69fbccc
+    [status] => successful
+    [amount] => 500
+    [currency] => BYN
+    [description] => Оформление подписки
+    [type] => payment
+    [payment_method_type] => credit_card
+    [tracking_id] => 25f7d4b4ce2c77fc
+    [message] => Successfully processed
+    [test] => 1
+    [created_at] => 2025-02-28T21:22:58.182Z
+    [updated_at] => 2025-02-28T21:23:01.515Z
+    [paid_at] => 2025-02-28T21:23:01.460Z
+    [expired_at] => 
+    [recurring_type] => 
+    [closed_at] => 
+    [settled_at] => 
+    [manually_corrected_at] => 
+    [language] => en
+    [credit_card] => Array
+        (
+            [holder] => VASA SASA
+            [stamp] => b3839d334ba40e89168d60cd9f9d1390aee3fe67dd4d5c41adbf3998043eaef8
+            [brand] => visa
+            [last_4] => 0000
+            [first_1] => 4
+            [bin] => 420000
+            [bin_8] => 42000000
+            [issuer_country] => US
+            [issuer_name] => VISA Demo Bank
+            [product] => F
+            [exp_month] => 11
+            [exp_year] => 2026
+            [token_provider] => 
+            [token] => 
+        )
+
+    [receipt_url] => https://merchant.bepaid.by/customer/transactions/a318b0e8-9c55-49e8-9722-6afdf69fbccc/66fe87f0b00737f42c9df1ba685c55b67a09b60e25405fa48bad11fcffd1d507?language=en
+    [status_code] => 
+    [gateway] => Array
+        (
+            [iframe] => 1
+        )
+
+    [mute_notifications] => 
+    [version] => 5
+    [psp_settled_at] => 
+    [registry_id] => 
+    [id] => a318b0e8-9c55-49e8-9722-6afdf69fbccc
+    [additional_data] => Array
+        (
+            [request_id] => 3e036355-9636-43bb-892f-9929db84f546
+            [vendor] => Array
+                (
+                    [name] => CTP
+                    [token] => 40cf7b40164d2e9c14467fc488631c9b6efdc30a963a75b7227bf43d9e1c6b59
+                )
+
+        )
+
+    [redirect_url] => https://gateway.bepaid.by/process/a318b0e8-9c55-49e8-9722-6afdf69fbccc
+    [code] => S.0000
+    [friendly_message] => The transaction is successfully processed.
+    [smart_routing_verification] => Array
+        (
+            [status] => successful
+        )
+
+    [payment] => Array
+        (
+            [auth_code] => 654321
+            [bank_code] => 05
+            [rrn] => 999
+            [ref_id] => 777888
+            [message] => Payment was approved
+            [amount] => 500
+            [currency] => BYN
+            [billing_descriptor] => test descriptor
+            [gateway_id] => 60708
+            [status] => successful
+        )
+
+    [avs_cvc_verification] => Array
+        (
+            [avs_verification] => Array
+                (
+                    [result_code] => 1
+                )
+
+            [cvc_verification] => Array
+                (
+                    [result_code] => Y
+                )
+
+        )
+
+    [customer] => Array
+        (
+            [ip] => 37.214.58.132
+            [email] => 
+            [device_id] => 7fcceb714886ead2cf0b2a1bcd3e509c
+            [birth_date] => 
+            [external_id] => 
+        )
+
+    [billing_address] => Array
+        (
+            [first_name] => 
+            [last_name] => 
+            [address] => 
+            [country] => 
+            [city] => 
+            [zip] => 
+            [state] => 
+            [phone] => 
+        )
+
+)

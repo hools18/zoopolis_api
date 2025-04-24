@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SMS as SMS;
 use App\Models\File;
+use App\Models\PetQrCode;
+use App\Models\CheckPhoneNumber;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManagerStatic as Image;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -52,7 +56,6 @@ class UserController extends Controller
             } else {
                 return false;
             }
-            return false;
         }
         return false;
     }
@@ -121,6 +124,7 @@ class UserController extends Controller
                 $return['is_active'] = $getUser->is_active;
                 $return['is_blocked'] = $getUser->is_blocked;
                 $return['blocked_reason'] = $getUser->blocked_reason;
+                $return['pet_uid'] = PetQrCode::where('user_id', $user->user)->where('is_active', 1)->first()?->uid;
                 if ($getUser->level == 9) {
                     $return['admin'] = true;
                 } else {
@@ -184,6 +188,20 @@ class UserController extends Controller
                     ->exists();
 
                 $return['hasSubscribe'] = $hasSubZooId || $hasSubConciergeId || $hasSubZoopolisId;
+
+                $return['feedbacks'] = [];
+                $missinganimal = DB::table('form_missinganimal')
+                    ->where('user', $user->user)
+                    ->orderBy('create', 'DESC')->get();
+                if ($missinganimal) {
+                    foreach ($missinganimal as $i => $data) {
+                        $return['feedbacks'][$i]['id'] = $data->id;
+                        $return['feedbacks'][$i]['create'] = $data->create;
+                        $return['feedbacks'][$i]['text'] = $data->text;
+                        $return['feedbacks'][$i]['status'] = $data->status;
+                        $return['feedbacks'][$i]['user'] = $data->user;
+                    }
+                }
 
                 return $return;
             } else {
@@ -249,7 +267,6 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $json = [];
-        $pass = $request->input('pass');
         $login = $request->input('login'); // Номер телефона
         $login = preg_replace("/[^0-9]/", "", $login);
         if ($login) {
@@ -270,21 +287,23 @@ class UserController extends Controller
             $phoneCheck = DB::table('users')->where('phone', $login)->count();
             if ($phoneCheck == 1) {
                 $user = DB::table('users')->where('phone', $login)->first();
-                $HashePass = md5(
-                    md5(
-                        md5('04jhBgl' . $pass . 'Jdh49Y4jhO') . md5('J48VjV39tj' . $pass . 'hKdjh(h4b')
-                    ) . '(3g(4857*&' . $pass . '#dfjgh*(7'
-                );
-                $password = $user->pass;
-                if ($HashePass == $password) {
-                    $token = random_bytes(16);
-                    $token = bin2hex($token);
-                    $json['userID'] = intval($user->id);
-                    $json['token'] = $token;
-                    $saveToken = DB::table('userstoken')->insertGetId([
-                        'user' => $user->id,
-                        'token' => $token
-                    ]);
+
+                if ($user && Hash::check($request->input('password'), $user->pass)) {
+                    if ($request->uid) {
+                        if (!empty(
+                        PetQrCode::where('uid', $request->uid)->whereNull('user_id')->where(
+                            'is_active',
+                            0
+                        )->exists()
+                        )) {
+                            $qr = PetQrCode::where('uid', $request->uid)->first();
+                            $qr->user_id = $user->id;
+                            $qr->is_active = 1;
+                            $qr->save();
+                        }
+                    }
+
+                    $this->sendCode($user);
                 } else {
                     $json['err'][] = 'Неверный пароль';
                     $json['password'] = 'Неверный пароль';
@@ -315,69 +334,150 @@ class UserController extends Controller
         );
     }
 
-    public function newUser(Request $request)
+    public function validateNewUser(Request $request)
     {
         $json = [];
         $login = $request->input('login'); // Номер телефона
         $login = preg_replace("/[^0-9]/", "", $login);
-        if ($login) {
+
+        $phoneCheck = DB::table('users')->where('phone', $login)->count();
+        if ($phoneCheck == 1) {
+            $json['err'][] = 'Данный номер телефона уже зарегистрирован.';
+            $json['login'] = 'Данный номер телефона уже зарегистрирован.';
         } else {
-            $json['err'][] = 'Неверный формат номера телефона.';
+            $code = rand(1000, 9999);
+            CheckPhoneNumber::updateOrCreate([
+                'phone' => $login,
+            ], [
+                'phone' => $login,
+                'code' => $code,
+            ]);
+            $sms_assistent = new SMS(env('API_USERNAME'), env('API_PASSWORD'));
+            $sms_assistent->setSubscribeName('Zoopolis');
+            $sms_assistent->sendSms(
+                env('API_SENDER'),
+                [$login],
+                'Ваш код подтверждения: ' . $code
+            );
+        }
+        return response()->json(
+            $json,
+            200,
+            array('Content-Type' => 'application/json;charset=utf8'),
+            JSON_UNESCAPED_UNICODE
+        );
+    }
+
+    public function validateCode(Request $request)
+    {
+        $result = CheckPhoneNumber::where('code', $request->code)
+            ->where('phone', $request->phone)->first();
+        if (empty($result)) {
+            $json['err'][] = 'Неверный код';
+            $json['code'] = 'Неверный код';
+        } else {
+            $result->delete();
         }
 
+        return response()->json(
+            $json ?? [],
+            200,
+            array('Content-Type' => 'application/json;charset=utf8'),
+            JSON_UNESCAPED_UNICODE
+        );
+    }
+
+    public function newUser(Request $request)
+    {
+        $json = [];
+        $login = $request->input('login');
+        $login = preg_replace("/[^0-9]/", "", $login);
         $email = $request->input('email');
         $email = mb_strtolower($email);
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        } else {
-            $json['email'] = 'Email адрес введен неверно.';
-        }
         $pass = $request->input('password');
-
-        if (mb_strlen($pass) <= 7) {
-            $json['err'][] = 'Минимальная длина пароля 8 символов';
-            $json['password'] = 'Минимальная длина пароля 8 символов';
+        $phoneCheck = DB::table('users')->where('phone', $login)->count();
+        if ($phoneCheck == 1) {
+            $json['err'][] = 'Данный номер телефона уже зарегистрирован.';
+            $json['login'] = 'Данный номер телефона уже зарегистрирован.';
         } else {
-        };
-        if (isset($json['err'])) {
-            // Ошибки.
-        } else {
-            $phoneCheck = DB::table('users')->where('phone', $login)->count();
-            if ($phoneCheck == 1) {
-                $json['err'][] = 'Данный номер телефона уже зарегистрирован.';
-                $json['login'] = 'Данный номер телефона уже зарегистрирован.';
-            } else {
-                $emailCheck = DB::table('users')->where('email', $email)->count();
-                if ($emailCheck == 1) {
-                    $json['err'][] = 'Данный емайл адрес уже зарегистрирован.';
-                    $json['email'] = 'Данный емайл адрес уже зарегистрирован.';
-                    return response()->json(
-                        $json,
-                        200,
-                        array('Content-Type' => 'application/json;charset=utf8'),
-                        JSON_UNESCAPED_UNICODE
-                    );
-                } else {
-                    $HashePass = md5(
-                        md5(
-                            md5('04jhBgl' . $pass . 'Jdh49Y4jhO') . md5('J48VjV39tj' . $pass . 'hKdjh(h4b')
-                        ) . '(3g(4857*&' . $pass . '#dfjgh*(7'
-                    );
-                    $createUser = DB::table('users')->insertGetId([
-                        'phone' => $login,
-                        'email' => $email,
-                        'pass' => $HashePass
-                    ]);
-                    $json['userID'] = intval($createUser);
-                    $token = random_bytes(16);
-                    $token = bin2hex($token);
-                    $saveToken = DB::table('userstoken')->insertGetId([
-                        'user' => $json['userID'],
-                        'token' => $token
-                    ]);
-                    $json['token'] = $token;
+            $createUser = DB::table('users')->insertGetId([
+                'phone' => $login,
+                'email' => $email,
+                'pass' => Hash::make($pass)
+            ]);
+            if ($request->uid) {
+                if (PetQrCode::where('uid', $request->uid)->whereNull('user_id')->where('is_active', 0)->exists()) {
+                    $qr = PetQrCode::where('uid', $request->uid)->first();
+                    $qr->user_id = $createUser;
+                    $qr->is_active = 1;
+                    $qr->save();
                 }
             }
+            $user = DB::table('users')->where('phone', $login)->first();
+            $token = random_bytes(16);
+            $token = bin2hex($token);
+            $json['userID'] = intval($user->id);
+            $json['token'] = $token;
+            DB::table('userstoken')->insertGetId([
+                'user' => $user->id,
+                'token' => $token
+            ]);
         }
+
+        return response()->json(
+            $json,
+            200,
+            array('Content-Type' => 'application/json;charset=utf8'),
+            JSON_UNESCAPED_UNICODE
+        );
+    }
+
+    public function sendCode($user)
+    {
+        $code = rand(1000, 9999);
+        DB::table('users')->where('id', $user->id)->update(['code_verification' => $code]);
+        $sms_assistent = new SMS(env('API_USERNAME'), env('API_PASSWORD'));
+        $sms_assistent->setSubscribeName('Zoopolis');
+        $result = $sms_assistent->sendSms(
+            env('API_SENDER'),
+            [$user->phone],
+            'Ваш код подтверждения: ' . $code
+        );
+
+        Log::log('info', 'Отправка смс: ', $result);
+    }
+
+    public function sendCodeRegister($phone, $code)
+    {
+        $sms_assistent = new SMS(env('API_USERNAME'), env('API_PASSWORD'));
+        $sms_assistent->setSubscribeName('Zoopolis');
+        $result = $sms_assistent->sendSms(
+            env('API_SENDER'),
+            [$phone],
+            'Ваш код подтверждения: ' . $code
+        );
+
+        Log::log('info', 'Отправка смс: ', $result);
+    }
+
+    public function checkCodeVerification(Request $request)
+    {
+        $user = User::where('code_verification', $request->code)->first();
+        if ($user) {
+            DB::table('users')->where('id', $user->id)->update(['code_verification' => null]);
+            $token = random_bytes(16);
+            $token = bin2hex($token);
+            $json['userID'] = intval($user->id);
+            $json['token'] = $token;
+            DB::table('userstoken')->insertGetId([
+                'user' => $user->id,
+                'token' => $token
+            ]);
+        } else {
+            $json['err'][] = 'Неверный код';
+            $json['code'] = 'Неверный код';
+        }
+
         return response()->json(
             $json,
             200,
@@ -398,22 +498,9 @@ class UserController extends Controller
         if (isset($return['err'])) {
             // Ошибки.
         } else {
-            $phoneCheck = DB::table('users')->where('phone', $login)->count();
-            if ($phoneCheck == 1) {
-                $newPass = random_bytes(4);
-                //$return[0] = $token;
-                $newPass = bin2hex($newPass);
-                $pass = md5('7a76-db07' . md5($newPass) . '8952-a5e8');
-
-                $HashePass = md5(
-                    md5(
-                        md5('04jhBgl' . $pass . 'Jdh49Y4jhO') . md5('J48VjV39tj' . $pass . 'hKdjh(h4b')
-                    ) . '(3g(4857*&' . $pass . '#dfjgh*(7'
-                );
-                $updPass = DB::table('users')->where('phone', $login)->update([
-                    'pass' => $HashePass
-                ]);
-
+            $phoneCheck = DB::table('users')->where('phone', $login)->exists();
+            if ($phoneCheck) {
+                $newPass = rand(10000000, 99999999);
                 $sms_assistent = new SMS(env('API_USERNAME'), env('API_PASSWORD'));
                 $sms_assistent->setSubscribeName('Zoopolis');
                 $result = $sms_assistent->sendSms(
@@ -421,6 +508,12 @@ class UserController extends Controller
                     [$login],
                     'Ваш новый пароль для входа в Личный кабинет: ' . $newPass
                 );
+
+                DB::table('users')->where('phone', $login)->update([
+                    'pass' => Hash::make($newPass)
+                ]);
+
+                Log::log('info', 'Отправка смс: ', $result);
             } else {
                 $return['err'][] = 'Номер телефона не зарегистрирован.';
                 $return['login'] = 'Номер телефона не зарегистрирован.';
@@ -681,6 +774,16 @@ class UserController extends Controller
         );
         if ($phone != '') {
             $phone = self::clearPhone($phone);
+            if (DB::table('users')->where('id', '!=', $userID)->where('phone', $phone)->exists()) {
+                return response()->json(
+                    [
+                        'error' => 'Данный номер уже зарегистрирован в системе'
+                    ],
+                    200,
+                    array('Content-Type' => 'application/json;charset=utf8'),
+                    JSON_UNESCAPED_UNICODE
+                );
+            }
             DB::table('users')->where('id', $userID)->update(
                 ['phone' => $phone]
             );
@@ -789,12 +892,13 @@ class UserController extends Controller
         if ($age != '') {
             $dataPets['age'] = $age;
         };
-        if ($male) {
+
+        if ($male != []) {
             $dataPets['gender'] = 1;
-        };
-        if ($female) {
+        }
+        if ($female != []) {
             $dataPets['gender'] = 2;
-        };
+        }
         if ($breed != '') {
             $dataPets['breed'] = $breed;
         };
@@ -866,7 +970,7 @@ class UserController extends Controller
     {
         $getUser = $this->getUser($request);
 
-        if($getUser['level'] == 9){
+        if ($getUser['level'] == 9) {
             $user = DB::table('users')->where('id', $clientID)->first();
 
             DB::table('users')->where('id', $clientID)->update([

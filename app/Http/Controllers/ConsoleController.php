@@ -1428,6 +1428,15 @@ class ConsoleController extends Controller{
 				$return['zoopolis']['status'] = false;
 			}
 
+            $checkZoopolis = DB::table('sub_zoopolis_user')->where('user', $clientID)->where('end', '>=', DB::raw('now()'))->first();
+            if($checkZoopolis){
+                $return['zoopolis']['status'] = true;
+                $return['zoopolis']['start'] = $checkZoopolis->start;
+                $return['zoopolis']['end'] = $checkZoopolis->end;
+            } else {
+                $return['zoopolis']['status'] = false;
+            }
+
 
 		}
 		return response()->json($return, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);

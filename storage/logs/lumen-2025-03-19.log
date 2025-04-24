@@ -1,0 +1,10 @@
+[2025-03-19 14:59:43] local.ERROR: There are no commands defined in the "vendor" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"vendor\" namespace. at /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/console/Application.php:669)
+[stacktrace]
+#0 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/console/Application.php(720): Symfony\\Component\\Console\\Application->findNamespace()
+#1 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/console/Application.php(266): Symfony\\Component\\Console\\Application->find()
+#2 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/symfony/console/Application.php(175): Symfony\\Component\\Console\\Application->doRun()
+#3 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/illuminate/console/Application.php(102): Symfony\\Component\\Console\\Application->run()
+#4 /home/admin/webserver/web/api.sergivanov.ru/public_html/vendor/laravel/lumen-framework/src/Console/Kernel.php(116): Illuminate\\Console\\Application->run()
+#5 /home/admin/webserver/web/api.sergivanov.ru/public_html/artisan(35): Laravel\\Lumen\\Console\\Kernel->handle()
+#6 {main}
+"} 

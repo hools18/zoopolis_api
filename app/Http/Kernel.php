@@ -1,7 +1,5 @@
 <?php
 
-protected $routeMiddleware = [
-	'cors' => \App\Http\Middleware\Cors::class
-];
-
-?>
+protected $routeMiddleware = array(
+	'cors' => App\Http\Middleware\CorsMiddleware::class,
+);

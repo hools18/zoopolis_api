@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PetQrCode;
 use Illuminate\Http\Request;
 use App\Models\File;
 use App\Http\Controllers\UserController as User;
@@ -26,10 +27,10 @@ class ServicesController extends Controller
         $getUser = User::getUser($request);
         $userID = $getUser['id'];
 
-        $text = $request->input('text');
-        $zooid = DB::table('form_missinganimal')->insertGetId([
+        DB::table('form_missinganimal')->insertGetId([
             'user' => $userID,
-            'text' => $text
+            'text' => $request->input('text'),
+            'address' => $request->input('address'),
         ]);
         return response()->json(
             $return,
@@ -44,29 +45,15 @@ class ServicesController extends Controller
         $return = [];
         $getUser = User::getUser($request);
         $userID = $getUser['id'];
-
-        $id = intval($request->input('id'));
-        if ($id >= 1) {
-            $missinganimal = DB::table('form_missinganimal')->where('id', $id)->whereIn('user', $userID)->first();
-
-            if ($missinganimal) {
-                $return['id'] = $data->id;
-                $return['create'] = $data->create;
-                $return['text'] = $data->text;
-                $return['status'] = $data->status;
-            }
-        } else {
-            $missinganimal = DB::table('form_missinganimal')->where('user', $userID)->orderBy('create', 'DESC')->get();
-            if ($missinganimal) {
-                foreach ($missinganimal as $i => $data) {
-                    $return[$i]['id'] = $data->id;
-                    $return[$i]['create'] = $data->create;
-                    $return[$i]['text'] = $data->text;
-                    $return[$i]['status'] = $data->status;
-                }
+        $missinganimal = DB::table('form_missinganimal')->where('user', $userID)->orderBy('create', 'DESC')->get();
+        if ($missinganimal) {
+            foreach ($missinganimal as $i => $data) {
+                $return[$i]['id'] = $data->id;
+                $return[$i]['create'] = $data->create;
+                $return[$i]['text'] = $data->text;
+                $return[$i]['status'] = $data->status;
             }
         }
-
 
         return response()->json(
             $return,
@@ -110,7 +97,7 @@ class ServicesController extends Controller
 
         if ($getUser['admin']) {
             $missinganimal = DB::table('form_missinganimal')->where('id', $id)->first();
-            $user = DB::table('users')->where('id', $missinganimal->user)->first();
+
 
             if ($missinganimal) {
                 $return['id'] = $missinganimal->id;
@@ -118,10 +105,25 @@ class ServicesController extends Controller
                 $return['text'] = $missinganimal->text;
                 $return['status'] = $missinganimal->status;
                 $return['user'] = $missinganimal->user;
-				$return['user_name'] = $user->first.' '.$user->last;
-				$return['user_phone'] = UserController::formatPhone($user->phone);
-				$return['user_email'] = $user->email;
                 $return['comments'] = $missinganimal->comments;
+                if ($missinganimal->uid !== null) {
+                    $qrCode = PetQrCode::where('uid', $missinganimal->uid)->firstOrFail();
+                    $user = DB::table('users')->where('id', $qrCode->user_id)->first();
+                    $return['user_name'] = $user->first . ' ' . $user->last;
+                    $return['user_phone'] = UserController::formatPhone($user->phone);
+                    $return['user_email'] = $user->email;
+                    $return['address'] = $missinganimal->address;
+                    $return['finder_phone'] = UserController::formatPhone($missinganimal->phone_finder);
+                    $return['finder_name'] = $missinganimal->name_finder;
+                } else {
+                    $user = DB::table('users')->where('id', $missinganimal->user)->first();
+                    $return['user_name'] = $user->first . ' ' . $user->last;
+                    $return['user_phone'] = UserController::formatPhone($user->phone);
+                    $return['user_email'] = $user->email;
+                    $return['finder_phone'] = null;
+                    $return['finder_name'] = null;
+                    $return['address'] = $missinganimal->address;
+                }
             }
         } else {
             $return['err'][] = 'У вас нет прав доступа';

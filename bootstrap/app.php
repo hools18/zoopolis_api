@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__.'/../vendor/autoload.php';
+
+require_once __DIR__ . '/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
     dirname(__DIR__)
@@ -21,7 +22,6 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
-
 
 
 $app->withEloquent();
@@ -79,14 +79,16 @@ $app->configure('jwt');
 // ]);
 
 $app->routeMiddleware([
-	'auth' => App\Http\Middleware\Authenticate::class,
+    'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 $app->middleware([
-	App\Http\Middleware\CorsMiddleware::class
+    App\Http\Middleware\CorsMiddleware::class
 ]);
 $app->routeMiddleware([
-  'cors' => App\Http\Middleware\CorsMiddleware::class,
-  'HubSpot' => Rossjcooper\LaravelHubSpot\Facades\HubSpot::class
+    'cors' => App\Http\Middleware\CorsMiddleware::class,
+    'HubSpot' => Rossjcooper\LaravelHubSpot\Facades\HubSpot::class,
+    'customAuth' => App\Http\Middleware\AuthMiddleware::class,
+    'throttle' => \LumenRateLimiting\ThrottleRequests::class,
 ]);
 $app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
 /*
@@ -101,13 +103,12 @@ $app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
-//$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 $app->register(App\Providers\EventServiceProvider::class);
 //$app->register(Rossjcooper\LaravelHubSpot\HubSpotServiceProvider::class);
-
 
 
 ##$app->register(Intervention\Image\ImageManager::class);
@@ -132,11 +133,11 @@ $app->configure('mail');
 $app->withFacades();
 $app->middleware([
     App\Http\Middleware\CorsMiddleware::class
- ]);
+]);
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
-    require __DIR__.'/../routes/web.php';
+    require __DIR__ . '/../routes/web.php';
 });
 
 return $app;

@@ -1,0 +1,1 @@
+[2025-03-24 17:11:41] local.INFO: Отправка смс:  {"error":0,"error_messages":[],"result":[{"sms_code":0,"sms_count":0,"sms_error":1,"sms_error_code":-4,"sms_error_msg":"Некорректное значение номера получателя","operator_code":0,"sms_tel":375111111111}],"type":"json"} 

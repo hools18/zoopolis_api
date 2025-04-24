@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0",
         "aws/aws-sdk-php": "^3.258",
+        "doctrine/dbal": "^4.2",
         "fakerphp/faker": "^1.20",
         "hubspot/api-client": "^8.4",
         "illuminate/mail": "^9.51",
@@ -17,6 +18,7 @@
         "laravel/lumen-framework": "^9.0",
         "mailchimp/marketing": "^3.0",
         "phpoffice/phpspreadsheet": "^3.5",
+        "rogervila/lumen-rate-limiting": "^1.2",
         "rossjcooper/laravel-hubspot": "^4.0",
         "socialiteproviders/apple": "^5.3",
         "socialiteproviders/auth0": "^4.1",
